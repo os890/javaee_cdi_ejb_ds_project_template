@@ -31,7 +31,8 @@
 
     <properties>
         <openejb.version>4.6.0</openejb.version>
-        <ds.version>0.7</ds.version>
+        <myfaces22.version>2.2.3</myfaces22.version>
+        <ds.version>1.0.0</ds.version>
     </properties>
 
     <repositories>
@@ -111,6 +112,25 @@
             <version>2.5</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-api</artifactId>
+            <version>${myfaces22.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.myfaces.test</groupId>
+            <artifactId>myfaces-test20</artifactId>
+            <version>1.0.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-impl-test</artifactId>
+            <version>${myfaces22.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>el-api</artifactId>

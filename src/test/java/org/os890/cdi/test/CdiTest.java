@@ -17,50 +17,28 @@
 
 package org.os890.cdi.test;
 
-import jakarta.ejb.embeddable.EJBContainer;
 import jakarta.inject.Inject;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.os890.cdi.template.ApplicationScopedBean;
+import org.os890.cdi.addon.dynamictestbean.EnableTestBeans;
+import org.os890.cdi.template.StatelessEJB;
 
 /**
- * TomEE / OpenEJB embedded test — verifies the full EJB + CDI stack.
+ * CDI SE test using the Dynamic CDI Test Bean Addon — verifies the
+ * {@link StatelessEJB} bean in a lightweight CDI SE container.
+ *
+ * @see <a href="https://github.com/os890/dynamic-cdi-test-bean-addon">Dynamic CDI Test Bean Addon</a>
  */
-class SimpleTest
+@EnableTestBeans
+class CdiTest
 {
-    private static EJBContainer container;
-
     @Inject
-    private ApplicationScopedBean applicationScopedBean;
-
-    @BeforeAll
-    static void setUp()
-    {
-        container = EJBContainer.createEJBContainer();
-    }
-
-    @BeforeEach
-    void inject() throws Exception
-    {
-        container.getContext().bind("inject", this);
-    }
-
-    @AfterAll
-    static void tearDown()
-    {
-        if (container != null)
-        {
-            container.close();
-        }
-    }
+    private StatelessEJB statelessEJB;
 
     @Test
-    void injectionTest()
+    void valueTest()
     {
-        Assertions.assertEquals(14, applicationScopedBean.getValue());
+        Assertions.assertEquals(14, statelessEJB.getValue());
     }
 }
